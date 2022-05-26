@@ -1,0 +1,160 @@
+﻿<!--
+Will assume anything tagged as a target gets the plan's prescription dose unless otherwise specified with DoseLevel attribute in the patient list
+All RapidPlan validation plan courses must be "Active"
+StructureMatching information should come from Model Configuration
+-->
+<RapidPlanModelList>
+	<Model Name="**KCI - Prostate">
+		<PatientList>
+			<!--Patient ID="1632476">
+				<ClinicalPlan Course="1 PROSTATE" Plan="PROST_1"/>
+				<RapidPlan Course="QA" Plan="*RPValidation"/>
+			</Patient-->
+			<!--Patient ID="3098673">
+				<ClinicalPlan Course="1 PROST FOSSA" Plan="PROST_FOSSA_1"/>
+				<RapidPlan Course="QA" Plan="*RPValidation"/>
+			</Patient-->
+			<Patient ID="$201808311107">
+				<ClinicalPlan Course="Prostate" Plan="Prost_1"/>
+				<RapidPlan Course="Prostate" Plan="*RPValidation">
+					<Target ID="2 PTVp_Prostate"/>
+				</RapidPlan>
+			</Patient>
+			<!--Patient ID="2922042">
+				<ClinicalPlan Course="1 PROSTATE" Plan="PROSTATE_1"/>
+				<RapidPlan Course="QA" Plan="*RPValidation"/>
+			</Patient-->
+			<!--Patient ID="31911">
+				<ClinicalPlan Course="1 PROST+PELVIS" Plan="PROSTATE_1"/>
+				<RapidPlan Course="QA" Plan="*RPValidation"/>
+			</Patient>
+			<Patient ID="2735616"/>
+			<Patient ID="3098673"/>
+			<Patient ID="2711486"/-->
+		</PatientList>
+		<StructureMatching>
+			<Structure ID="0 GTVp" Code="GTVp"/>
+			<Structure ID="1 CTVp" Code="CTV_High"/>
+			<Structure ID="2 PTVp" Code="PTV_High" IsTarget="Yes"/>
+			<Structure ID="Bladder" Code="15900"/>
+			<Structure ID="Bowel_Bag" Code="7200"/>
+			<Structure ID="Bowel_Large" Code="7201"/>
+			<Structure ID="Bowel_Sigmoid" Code="7199"/>
+			<Structure ID="Femur_L" Code="24475"/>
+			<Structure ID="Femur_R" Code="24474"/>
+			<Structure ID="PenileBulb" Code="19614"/>
+			<Structure ID="Prostate" Code="9600"/>
+			<Structure ID="Rectum" Code="14544"/>
+			<Structure ID="SeminalVes_Full" Code="19386"/>
+			<Structure ID="SeminalVes_Prox" Code="19386"/>
+		</StructureMatching>
+		<Metrics>
+			<Metric Structure="2 PTVp" Constraint="V95%[%]"/>
+			<Metric Structure="2 PTVp" Constraint="V100%[%]"/>
+			<Metric Structure="2 PTVp" Constraint="V105%[%]"/>
+			<Metric Structure="2 PTVp" Constraint="V110%[%]"/>
+			<Metric Structure="2 PTVp" Constraint="Max[%]"/>
+			<Metric Structure="Bladder" Constraint="V50Gy[%]"/>
+			<Metric Structure="Bladder" Constraint="V65Gy[%]"/>
+			<Metric Structure="Bladder" Constraint="V70Gy[%]"/>
+			<Metric Structure="Bladder" Constraint="V75Gy[%]"/>
+			<Metric Structure="Bladder" Constraint="V80Gy[%]"/>
+			<Metric Structure="Femur_L" Constraint="V50Gy[%]"/>
+			<Metric Structure="Femur_R" Constraint="V50Gy[%]"/>
+			<Metric Structure="PenileBulb" Constraint="Mean[cGy]"/>
+			<Metric Structure="Rectum" Constraint="V50Gy[%]"/>
+			<Metric Structure="Rectum" Constraint="V66.6Gy[%]"/>
+			<Metric Structure="Rectum" Constraint="V75Gy[%]"/>
+		</Metrics>
+	</Model>
+	<Model Name="**KCI - Lung">
+		<PatientList>
+			<Patient ID="279019"/>
+			<Patient ID="2957077"/>
+			<Patient ID="2891297"/>
+		</PatientList>
+	</Model>
+	<!--Model Name="**KCI - Head and Neck"-->
+	<Model Name="*Shared Head and Neck Model">
+		<PatientList>
+			<!--Patient ID="2743067">
+				<ClinicalPlan Course="1 HEAD+NECK" Plan="HEAD+NECK_1" />
+				<RapidPlan Course="QA" Plan="*RPValidation">
+					<Target ID="PTV_70"/>
+					<Target ID="PTV_63"/>
+					<Target ID="PTV_54"/>
+				</RapidPlan>
+			</Patient-->
+			<Patient ID="24048">
+				<ClinicalPlan Course="1 HEAD+NECK" Plan="HEAD+NECK_1" />
+				<RapidPlan Course="QA" Plan="*RPValidation">
+					<Target ID="PTV_70" DoseLevel="70Gy"/>
+					<Target ID="PTV_59.4" DoseLevel="59.4Gy"/>
+					<Target ID="PTV_56" DoseLevel="56Gy"/>
+				</RapidPlan>
+			</Patient>
+		</PatientList>
+		<!--StructureMatching>  **KCI 0 Head and Neck
+			<Structure ID="2 PTV_High" Code="PTV_High" IsTarget="Yes"/>
+			<Structure ID="2 PTV_Low" Code="PTV_Low" IsTarget="Yes"/>
+			<Structure ID="2 PTV_Mid" Code="PTV_Intermediate" IsTarget="Yes"/>
+			<Structure ID="0 GTVn" Code="GTVn"/>
+			<Structure ID="0 GTVp" Code="GTVp"/>
+			<Structure ID="1 CTV_High" Code="CTV_High"/>
+			<Structure ID="1 CTV_Low" Code="CTV_Low"/>
+			<Structure ID="1 CTV_Mid" Code="CTV_Intermediate"/>
+			<Structure ID="Bone_Mandible" Code="52748"/>
+			<Structure ID="Bone_Spine" Code="24138"/>
+			<Structure ID="BrachialPlexus_L" Code="45245"/>
+			<Structure ID="BrachialPlexus_R" Code="45244"/>
+			<Structure ID="BrainStem" Code="79876"/>
+			<Structure ID="BrainStem_PRV03" Code="PRV"/>
+			<Structure ID="Cochlea_L" Code="60203"/>
+			<Structure ID="Cochlea_R" Code="60202"/>
+			<Structure ID="Esophagus" Code="7131"/>
+			<Structure ID="Larynx_Full" Code="55097"/>
+			<Structure ID="Larynx_Glottic" Code="55414"/>
+			<Structure ID="Lips" Code="59815"/>
+			<Structure ID="Musc_Const_I" Code="46623"/>
+			<Structure ID="Musc_Const_S" Code="46621"/>
+			<Structure ID="OralCavity" Code="20292"/>
+			<Structure ID="Parotid_L" Code="59798"/>
+			<Structure ID="Parotid_R" Code="59797"/>
+			<Structure ID="Parotids" Code="Parotids"/>
+			<Structure ID="Pituitary" Code="13889"/>
+			<Structure ID="SpinalCord" Code="7647"/>
+			<Structure ID="SpinalCord_PRV05" Code="PRV"/>
+			<Structure ID="Submandibular_L" Code="59803"/>
+			<Structure ID="Submandibular_R" Code="59802"/>
+			<Structure ID="Trachea" Code="7394"/>
+		</StructureMatching-->
+		<StructureMatching>
+			<Structure ID="PTV_High" Code="PTV_High" IsTarget="Yes"/>
+			<Structure ID="PTV_Low" Code="PTV_Low" IsTarget="Yes"/>
+			<Structure ID="PTV_Intermediate" Code="PTV_Intermediate" IsTarget="Yes"/>
+			<Structure ID="Mandible" Code="52748"/>
+			<Structure ID="BrainStem" Code="79876"/>
+			<Structure ID="Esophagus_Upper" Code="7131"/>
+			<Structure ID="OralCavity" Code="20292"/>
+			<Structure ID="Parotid" Code="59798"/>
+			<Structure ID="SpinalCord" Code="FMA"/>
+			<Structure ID="SpinalCord_05" Code="PRV"/>
+			<Structure ID="Submandibular" Code="59803"/>
+		</StructureMatching>
+		<Metrics>
+			<!--Metric Structure="2 PTV_High" Constraint="V95%[%]"/>
+			<Metric Structure="2 PTV_High" Constraint="V100%[%]"/>
+			<Metric Structure="2 PTV_High" Constraint="V105%[%]"/>
+			<Metric Structure="2 PTV_High" Constraint="V110%[%]"/>
+			<Metric Structure="2 PTV_High" Constraint="Max[%]"/>
+			<Metric Structure="Bone_Mandible" Constraint="Max[%]"/-->
+			<Metric Structure="Esophagus_Upper" Constraint="Mean[cGy]"/>
+			<!--Metric Structure="OralCavity" Constraint="V40Gy[%]"/>
+			<Metric Structure="Parotid_L" Constraint="V20Gy[%]"/>
+			<Metric Structure="Parotid_R" Constraint="V20Gy[%]"/>
+			<Metric Structure="Parotids" Constraint="V20Gy[%]"/>
+			<Metric Structure="SpinalCord" Constraint="Max[%]"/>
+			<Metric Structure="SpinalCord_PRV05" Constraint="Max[%]"/-->
+		</Metrics>
+	</Model>
+</RapidPlanModelList>
